@@ -28,5 +28,5 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/webTLO:stable
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/webtlo:stable
           #-$(date +%s)
