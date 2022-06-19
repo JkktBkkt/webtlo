@@ -30,12 +30,18 @@ class Rtorrent extends TorrentClient
             'Content-type: text/xml',
             'Content-length: ' . strlen($request)
         );
+        if (!empty($this->port) && !(strrpos($this->host, $this->port))) {
+            $this->host .= ':' . $this->port;
+        }
         curl_setopt_array($this->ch, array(
             CURLOPT_URL => sprintf(self::$base, $this->scheme, $this->host),
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_HTTPHEADER => $header,
-            CURLOPT_POSTFIELDS => $request,
+            CURLOPT_POSTFIELDS => $request
         ));
+        if (!empty($this->login) && !empty($this->password)) {
+            curl_setopt($this->ch, CURLOPT_USERPWD, $this->login . ':' . $this->password);
+        }
         $maxNumberTry = 3;
         $connectionNumberTry = 1;
         while (true) {
