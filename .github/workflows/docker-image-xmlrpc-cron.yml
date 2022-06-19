@@ -2,9 +2,9 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "docker-with-xmlrpc-and-cron" ]
+    branches: [ "stable" ]
   pull_request:
-    branches: [ "docker-with-xmlrpc-and-cron" ]
+    branches: [ "stable" ]
 
 jobs:
   build:
@@ -28,5 +28,5 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/webTLO:xmlrpc-and-cron
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/webTLO:stable
           #-$(date +%s)
