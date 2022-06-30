@@ -2,9 +2,9 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "stable" ]
+    branches: [ "testing" ]
   pull_request:
-    branches: [ "stable" ]
+    branches: [ "testing" ]
 
 jobs:
   build:
@@ -28,8 +28,8 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/webtlo:stable
-          cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/webtlo:buildcache
-          cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/webtlo:buildcache,mode=max
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/webtlo:testing
+          cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/webtlo:buildcache-testing
+          cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/webtlo:buildcache-testing,mode=max
 
           #-$(date +%s)
