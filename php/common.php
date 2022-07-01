@@ -278,7 +278,7 @@ function mkdir_recursive($path)
     if (is_writable($path) && is_dir($path)) {
         return true;
     }
-	$return = mkdir($path, null, true);
+	$return = mkdir($path, 0750, true);
     return $return && is_writable($path) && !file_exists($path);
 }
 
