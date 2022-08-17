@@ -1,0 +1,24 @@
+SHELL=/bin/bash
+BASH_ENV=/etc/environment
+# Заданы шелл, где cron запускается, пути и переменные окружения
+# Example of job definition:
+# .---------------- minute (0 - 59)
+# |  .------------- hour (0 - 23)
+# |  |  .---------- day of month (1 - 31)
+# |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...
+# |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat
+# |  |  |  |  |
+# *  *  *  *  * user-name command to be executed
+# 
+# Внутри контейнера используется часовой пояс UTC
+# Используем значения из wiki
+# Пути иные - вместо /var/www/webtlo-local/ в контейнере есть только /var/www/html/
+#
+# Ежечасно в :15 минут обновляем информацию о раздачах с клиента и трекера о всех раздачах в сканируемых подразделах
+15 * * * * root php /var/www/html/cron/update.php
+# Ежедневно в 6:45 собираем информацию о других хранителях в сканируемых подразделах (проверяет отчеты других пользователей)
+45 6 * * * root php /var/www/html/cron/keepers.php
+# Ежедневно в 1:45 отправляем свои отчёты на форум
+45 1 * * * root php /var/www/html/cron/reports.php
+# Каждые полчаса регулируем активные раздачи
+*/30 * * * * root php /var/www/html/cron/control.php
