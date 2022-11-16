@@ -18,7 +18,7 @@ BASH_ENV=/etc/environment
 15 * * * * root php /var/www/html/cron/update.php
 # Ежедневно в 6:45 собираем информацию о других хранителях в сканируемых подразделах (проверяет отчеты других пользователей)
 45 6 * * * root php /var/www/html/cron/keepers.php
-# Ежедневно в 1:45 отправляем свои отчёты на форум
-45 1 * * * root php /var/www/html/cron/reports.php
+# Ежедневно в 1:15 отправляем свои отчёты на форум
+15 1 * * * root php /var/www/html/cron/reports.php
 # Каждые полчаса регулируем активные раздачи
 */30 * * * * root php /var/www/html/cron/control.php
